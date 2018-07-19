@@ -87,7 +87,8 @@ def scrape():
     html = browser.html
     soup = bs(html, 'html.parser')
 
-    mars_weather = soup.find('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
+    weather_tweet = soup.find('div', attrs={"class": "tweet", "data-screen-name": "MarsWxReport"})
+    mars_weather = weather_tweet.find('p', class_='TweetTextSize TweetTextSize--normal js-tweet-text tweet-text').text
     mars_data['mars_weather'] = mars_weather
 
     # In[242]:
